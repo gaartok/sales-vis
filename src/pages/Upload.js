@@ -27,12 +27,12 @@ class Upload extends React.Component {
 */
 
 
-   onSubmit = async (fileData, fileName) => {
+   onSubmit = async (fileData, fileName, endPoint) => {
 		const formData = new FormData();
       formData.append('fileName', fileName);
 		formData.append('fileData', JSON.stringify(fileData));
 
-		fetch('http://localhost:8080/salesVis/importData',
+		fetch(endPoint,
 			{
 				method: 'POST',
 				body: formData
@@ -67,11 +67,11 @@ onSubmit = async (fileData, fileName) => {
 
 
    render() {
-      let importButtonText = "Select File";
-      let returnVal = 
+      const importButtonText = "Select File";
+      const returnVal = 
          <div className="areaInput">
             <h1>Upload</h1>
-            <FileDataInput dataHandler={this.onSubmit} buttonText={importButtonText} />
+            <FileDataInput dataHandler={this.onSubmit} buttonText={importButtonText} endPoint={this.props.endPoint}/>
          </div>
       return returnVal;
    }
