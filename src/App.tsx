@@ -5,8 +5,6 @@ import About from "./pages/About"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
-  const uploadEndpoint = process.env.REACT_APP_UPLOAD_ENDPOINT;
-
   return (
     <>
       <Navbar />
@@ -14,7 +12,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/upload" element={<Upload endPoint={uploadEndpoint}/>} />
+          <Route path="/upload" element={<Upload endPoint={process.env.REACT_APP_UPLOAD_ENDPOINT}/>} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>
