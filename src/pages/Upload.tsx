@@ -2,16 +2,8 @@ import React from 'react';
 import FileDataInput from "../components/FileDataInput"
 
 
-class Upload extends React.Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         endPointBase: props.endPointBase,
-         selectedFile: null
-      };
-   }
-
-   onSubmit = async (fileData, fileName, endPoint) => {
+class Upload extends React.Component <{ endPointBase: string }, { isLoading: Boolean, startDate: Date }> {
+   onSubmit = async (fileData: string, fileName: string, endPoint: string) => {
 		const formData = new FormData();
       formData.append('fileName', fileName);
 		formData.append('fileData', JSON.stringify(fileData));
