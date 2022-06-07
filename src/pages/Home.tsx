@@ -1,16 +1,24 @@
 import React from 'react';
+import DatePicker from "react-datepicker";
 
 // '/salesVis/salesData/startDate/:startDate/endDate/:endDate'
 
-class Home extends React.Component {
-  constructor(props) {
+interface HomeProps {
+  endPointBase: string;
+  middleName?: string;
+  lastName: string;
+}
+
+
+class Home extends React.Component <{ endPointBase: string }, { isLoading: Boolean, startDate: Date }> {
+  constructor(props: HomeProps) {
     super(props);
     this.state = {
-       isLoading: false
+       isLoading: false,
+       startDate: new Date()
     };
-
     this.onSubmit = this.onSubmit.bind(this);
- }
+  }
 
 
   onSubmit() {
@@ -41,6 +49,7 @@ class Home extends React.Component {
         <h1>Home</h1>
         { this.state.isLoading && <div>Loading...</div> }
         { !this.state.isLoading && <button type="button" onClick={this.onSubmit}>{'Request Data'}</button> }
+        <DatePicker selected={this.state.startDate} onChange={(date:Date) => this.setState({ startDate:date })} />
       </div>
     return returnVal;
   }
