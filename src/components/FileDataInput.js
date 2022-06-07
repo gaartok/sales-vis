@@ -4,11 +4,12 @@ import React from 'react';
    reads the data from the file and passes it to the dataHandler function
 */
 
-function buildFileSelector(dataHandler, endPoint) {
+function buildFileSelector(dataHandler, endPointBase) {
    const fileSelector = document.createElement('input');
    fileSelector.setAttribute('type', 'file');
 
-   console.log('buildFileSelector');
+   const endPoint = endPointBase + "importData";
+   console.log(`buildFileSelector  endPoint = ${endPoint}`);
    fileSelector.onchange = (ev) => {
       const reader = new FileReader();
       const fileName = ev.target.files[0].name;
@@ -22,20 +23,17 @@ function buildFileSelector(dataHandler, endPoint) {
    return fileSelector;
  }
 
- 
  class FileDataInput extends React.Component {
    componentDidMount() {
-     this.fileSelector = buildFileSelector(this.props.dataHandler, this.props.endPoint);
+     this.fileSelector = buildFileSelector(this.props.dataHandler, this.props.endPointBase);
    }
    
    handleFileSelect = (e) => {
-      console.log('handleFileSelect');
       e.preventDefault();
       this.fileSelector.click();
    }
-   
+
    render(){
-      console.log('FileDataInput render');
       return <button type="button" onClick={this.handleFileSelect}>{this.props.buttonText}</button>
    }
  }
