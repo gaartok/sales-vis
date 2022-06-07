@@ -7,6 +7,7 @@ export default function Navbar() {
         Cliffside Brewing
       </Link>
       <ul>
+        <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/upload">Upload</CustomLink>
         <CustomLink to="/about">About</CustomLink>
       </ul>
