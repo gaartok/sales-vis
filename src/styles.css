@@ -58,3 +58,9 @@ body {
 .navbar li:hover {
   background-color: #777;
 }
+
+.error-msg {
+  color: red;
+  padding: .5rem;
+
+}
